@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es-CO">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manual de Usuario - Plantillas de Ahorro (COP)</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+    <header class="app-header">
+        <h1>Plantillas de Ahorro (COP)</h1>
+        <nav>
+            <a href="/" id="homeLink">Inicio</a>
+            <a href="manual.html" id="manualLink">Cómo usar</a>
+        </nav>
+    </header>
+
+
+    <main>
+        <section>
+            <h2>Bienvenido a la aplicación de Plantillas de Ahorro</h2>
+            <p>Esta aplicación te permite crear y gestionar plantillas para ahorrar dinero de manera efectiva. A
+                continuación, se describen las funcionalidades principales:</p>
+        </section>
+
+        <section>
+            <h2>Cómo usar la aplicación</h2>
+            <h3>1. Crear una nueva plantilla</h3>
+            <p>Para crear una nueva plantilla, completa el formulario en la sección "Nueva Plantilla" en la página
+                principal. Debes ingresar:</p>
+            <ul>
+                <li><strong>Nombre:</strong> El nombre de tu plantilla.</li>
+                <li><strong>Meta total (COP):</strong> La cantidad total que deseas ahorrar.</li>
+                <li><strong>Días objetivo:</strong> El número de días en los que deseas alcanzar tu meta.</li>
+                <li><strong>Denominaciones:</strong> Las denominaciones de billetes que utilizarás, separadas por comas.
+                </li>
+            </ul>
+            <p>Una vez completado, haz clic en "Crear y abrir" para guardar la plantilla y comenzar a usarla.</p>
+
+            <h3>2. Ver plantillas guardadas</h3>
+            <p>Las plantillas que hayas creado se mostrarán en la sección "Plantillas guardadas". Desde aquí, puedes ver
+                detalles, editar o eliminar plantillas existentes.</p>
+
+            <h3>3. Importar y exportar plantillas</h3>
+            <p>
+                Las plantillas se guardan <strong>solo en tu navegador</strong> (en este dispositivo y en este mismo
+                navegador).
+                No se suben a internet ni se sincronizan automáticamente.
+            </p>
+            <ul>
+                <li>Si entras desde <strong>otro computador</strong> o desde <strong>otro navegador</strong>, <strong>no
+                        verás tus plantillas</strong>.</li>
+                <li>Si borras los <em>Datos de navegación</em>/<em>Historial</em> o usas <em>modo incógnito</em>,
+                    podrías perderlas.</li>
+            </ul>
+            <p>
+                <strong>Recomendación:</strong> haz copias de seguridad con el botón <em>“Exportar JSON”</em> y guarda
+                el archivo en un lugar seguro
+                (por ejemplo, tu nube o un disco). Así podrás recuperarlas cuando lo necesites.
+            </p>
+            <p>
+                Para <strong>importar</strong> una plantilla, usa el botón <em>“Importar JSON”</em> o arrastra el
+                archivo <code>.json</code> a la zona
+                “Arrastra aquí tu JSON”.
+            </p>
+            <p>
+                <em>Nota:</em> El archivo <strong>PDF</strong> sirve para imprimir o compartir, pero <strong>no</strong>
+                se puede importar.
+                Para restaurar una plantilla necesitas el archivo <code>.json</code>.
+            </p>
+
+
+            <h3>4. Recalcular distribución</h3>
+            <p>Si deseas ajustar la distribución de tus ahorros, puedes hacerlo en la vista del editor utilizando el
+                botón "Recalcular distribución".</p>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <small>
+            © <span id="year"></span> <span id="appName"></span> v<span id="appVersion"></span>
+            — Datos guardados en tu navegador. — <span id="utcOffset"></span>
+        </small>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

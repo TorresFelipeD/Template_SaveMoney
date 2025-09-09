@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es-CO">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plantillas de Ahorro (COP)</title>
+    <link rel="stylesheet" href="css\styles.css" />
+    <!-- Librerías opcionales para PDF (se usan si están disponibles) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <header class="app-header">
+        <h1>Plantillas de Ahorro (COP)</h1>
+        <nav>
+            <a href="/" id="homeLink">Inicio</a>
+            <a href="manual.html" id="manualLink">Cómo usar</a>
+        </nav>
+    </header>
+
+
+    <!-- Vista: HOME -->
+    <main id="view-home" class="view active">
+        <section class="new-template">
+            <h2>Nueva Plantilla</h2>
+            <form id="newTemplateForm">
+                <div class="grid-2">
+                    <label>Nombre
+                        <input required name="nombre" type="text" placeholder="Mi Ahorro Viaje" />
+                    </label>
+                    <label>Meta total (COP)
+                        <input required name="metaCOP" type="number" min="1" step="1" placeholder="300000" />
+                    </label>
+                    <label>Días objetivo
+                        <input required name="diasObjetivo" type="number" min="1" step="1" placeholder="90" />
+                    </label>
+                    <label>Denominaciones (coma separada)
+                        <input required name="denominaciones" type="text" placeholder="10000,20000,50000" />
+                    </label>
+                    <label class="checkbox-row" id="preferirMenosDiasRow" hidden>
+                        <input name="preferirMenosDias" type="checkbox">
+                        Preferir menos días (priorizar el mínimo de días posible)
+                    </label>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="btn primary">Crear y abrir</button>
+                    <button type="reset" class="btn">Limpiar</button>
+                </div>
+            </form>
+        </section>
+        <hr>
+        <section class="templates-list">
+            <div class="list-header">
+                <h2>Plantillas guardadas</h2>
+                <div class="import-controls">
+                    <label class="btn">
+                        Importar JSON
+                        <input id="importFileInput" type="file" accept="application/json" hidden />
+                    </label>
+                    <div id="dropZone" class="drop-zone" title="Arrastra aquí tu archivo .json para importar">Arrastra
+                        aquí tu JSON</div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Creación</th>
+                        <th>Meta total</th>
+                        <th>Días (resueltos / totales)</th>
+                        <th>Fecha meta</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="templatesTbody"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Vista: EDITOR -->
+    <main id="view-editor" class="view">
+        <div class="editor-header">
+            <div>
+                <a class="btn" href="#home">← Volver</a>
+            </div>
+            <div class="title-wrap">
+                <h2 id="edNombre">—</h2>
+                <small id="edFechas">—</small>
+            </div>
+            <div class="editor-actions">
+                <button id="btnEdExportJSON" class="btn">Exportar JSON</button>
+                <button id="btnEdExportPDF" class="btn">Exportar PDF</button>
+                <button id="btnEdGuardar" class="btn primary">Guardar cambios</button>
+            </div>
+        </div>
+
+        <section class="editor-meta card">
+            <div class="grid-3">
+                <div>
+                    <label>Meta total (COP)</label>
+                    <input id="edMeta" type="number" min="1" step="1" />
+                </div>
+                <div>
+                    <label>Días objetivo</label>
+                    <input id="edDiasObjetivo" type="number" min="1" step="1" />
+                </div>
+                <div>
+                    <label>Denominaciones (coma separada)</label>
+                    <input id="edDenominaciones" type="text" />
+                </div>
+            </div>
+            <div class="grid-3 align-center">
+                <label class="checkbox-row" hidden>
+                    <input id="edPreferirMenosDias" type="checkbox" />
+                    Preferir menos días
+                </label>
+                <div></div>
+                <div><strong>Días resultantes: </strong><span id="edDiasResultantes">—</span></div>
+                <div><strong>Denominación mínima: </strong><span id="edDenMin">—</span></div>
+            </div>
+            <div class="actions">
+                <button id="btnRecalcular" class="btn">Recalcular distribución</button>
+            </div>
+            <div class="bill-counts">
+                <label>Conteo de billetes</label>
+                <div id="edConteos" class="counts-row"></div>
+            </div>
+        </section>
+
+        <section class="board-wrap">
+            <div class="board-header">
+                <div id="contadorDias" class="counter">Días ahorrados: 0 / 0</div>
+            </div>
+            <div id="board" class="board" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <small>
+            © <span id="year"></span> <span id="appName"></span> v<span id="appVersion"></span>
+            — Datos guardados en tu navegador. — <span id="utcOffset"></span>
+        </small>
+    </footer>
+
+
+    <script src="js/config.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/logic.js"></script>
+    <script src="js/pdf.js"></script>
+    <script src="js/ui-home.js"></script>
+    <script src="js/ui-editor.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
