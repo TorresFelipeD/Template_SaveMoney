@@ -82,4 +82,4 @@ La aplicación utiliza el LocalStorage del navegador para la persistencia de dat
 
 
 ## Licencia
-Todos los derechos reservados. Esta es una aplicación propietaria.
+Este proyecto está bajo la licencia MIT. Para más detalles, consulta el archivo [LICENSE](LICENSE) en la raíz de este repositorio.
